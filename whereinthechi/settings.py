@@ -94,5 +94,6 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'neighborhoods',
     'wards',
-    'policebeats'
+    'policebeats',
+    'censustracts'
 )
