@@ -41,6 +41,10 @@ class Neighborhoods(models.Model):
     
     def __unicode__(self): return self.pri_neigh
 
+    # So the model is pluralized correctly in the admin.
+    class Meta:
+        verbose_name_plural = "Neighborhoods"
+        
 # Auto-generated `LayerMapping` dictionary for Neighborhoods model
 neighborhoods_mapping = {
     'objectid' : 'OBJECTID',
