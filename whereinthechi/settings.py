@@ -95,5 +95,6 @@ INSTALLED_APPS = (
     'neighborhoods',
     'wards',
     'policebeats',
-    'censustracts'
+    'censustracts',
+    'communityareas'
 )
