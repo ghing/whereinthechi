@@ -1,6 +1,27 @@
-# python manage.py  ogrinspect ./neighborhoods/data/Neighboorhoods.shp Neighborhoods --srid=4296 --mapping --name-field=pri_neigh
-# This is an auto-generated Django model module created by ogrinspect.
 from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
+
+class NeighborhoodsException(Exception):
+    """Base exception class for this model."""
+    pass
+
+class MultipleNeighborhoodsException(NeighborhoodsException):
+    """Exception to be raised if a point can be found in more than one neighborhoods."""
+    pass
+
+class NeighborhoodsManager(models.GeoManager):
+    """Custom manager class to add some extra table-level methods."""
+    def get_neighborhood_name(self, lat, lng):
+        """Get the neighborhood name for given coordinates."""
+        pnt = Point(lat, lng, srid=4326)
+        qs = Neighborhoods.objects.filter(geom__intersects=pnt)
+        if qs.count() == 1:
+            return "%s" % qs[0]
+        else:
+            raise MultipleNeighborhoodsException()
+
+# This is based on an auto-generated Django model module created by ogrinspect.
+# python manage.py  ogrinspect ./neighborhoods/data/Neighboorhoods.shp Neighborhoods --srid=102671 --mapping --name-field=pri_neigh
 
 class Neighborhoods(models.Model):
     objectid = models.IntegerField()
@@ -14,8 +35,10 @@ class Neighborhoods(models.Model):
     #geom = models.PolygonField(srid=4269)
     #geom = models.PolygonField(srid=4296)
     #geom = models.PolygonField(srid=3435) 
-    objects = models.GeoManager()
-
+    
+    #objects = models.GeoManager()
+    objects = NeighborhoodsManager()
+    
     def __unicode__(self): return self.pri_neigh
 
 # Auto-generated `LayerMapping` dictionary for Neighborhoods model
