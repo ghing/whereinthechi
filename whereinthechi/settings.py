@@ -92,9 +92,10 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'django.contrib.gis',
-    'neighborhoods',
-    'wards',
-    'policebeats',
-    'censustracts',
-    'communityareas'
+    'whereinthechi.neighborhoods',
+    'whereinthechi.wards',
+    'whereinthechi.policebeats',
+    'whereinthechi.censustracts',
+    'whereinthechi.communityareas',
+    'whereinthechi.core'
 )
