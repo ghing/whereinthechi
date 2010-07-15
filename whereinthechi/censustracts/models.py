@@ -13,7 +13,7 @@ class CensusTractsManager(models.GeoManager):
     """Custom manager class to add some extra table-level methods."""
     def get_census_tract(self, lat, lng):
         """Get the census tract number for given coordinates."""
-        pnt = Point(lat, lng, srid=4326)
+        pnt = Point(lng, lat, srid=4326)
         qs = CensusTracts.objects.filter(geom__intersects=pnt)
         if qs.count() == 1:
             return "%s" % qs[0]

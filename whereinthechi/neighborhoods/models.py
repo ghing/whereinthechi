@@ -13,7 +13,7 @@ class NeighborhoodsManager(models.GeoManager):
     """Custom manager class to add some extra table-level methods."""
     def get_neighborhood_name(self, lat, lng):
         """Get the neighborhood name for given coordinates."""
-        pnt = Point(lat, lng, srid=4326)
+        pnt = Point(lng, lat, srid=4326)
         qs = Neighborhoods.objects.filter(geom__intersects=pnt)
         if qs.count() == 1:
             return "%s" % qs[0]
