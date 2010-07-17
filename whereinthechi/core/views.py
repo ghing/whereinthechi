@@ -7,6 +7,11 @@ from wards.models import Wards
 from django.http import HttpResponse
 from django.utils import simplejson
 
+def index(request, output):
+    # BOOKMARK
+    pass
+
+
 def api(request, output):
     """
     Good test http://127.0.0.1:8000/api/json?latlng=41.938840,-87.643078 
